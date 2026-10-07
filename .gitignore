@@ -1,0 +1,22 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# PyInstaller build artifacts
+build/
+
+# Local databases and trip logs (user data)
+diagnostic_history.db
+trips_data/
+DiagnosticosOBD/
+
+# IDE and temporary files
+.vscode/
+.idea/
+*.log
