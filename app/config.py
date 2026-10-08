@@ -27,3 +27,7 @@ APP_NAME = "OBD Scanner"
 APP_VERSION = "1.2.0"
 VEHICLE_PROFILE_DEFAULT = "Renault Logan 2018 1.0 (3 Cilindros)"
 SAFETY_WARNING = "AVISO DE SEGURANÇA: Esta ferramenta opera em modo SOMENTE LEITURA. Não apague os códigos antes de salvar o diagnóstico completo."
+
+GITHUB_REPO = "lgluiz1/Scan-ODB-II-ELM327"
+GITHUB_RELEASES_API = f"https://api.github.com/repos/{GITHUB_REPO}/releases/latest"
+

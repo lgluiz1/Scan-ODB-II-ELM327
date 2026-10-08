@@ -9,7 +9,7 @@ from PySide6.QtWidgets import (
     QPushButton, QComboBox, QTabWidget, QScrollArea, QFrame,
     QMessageBox, QStatusBar, QProgressBar
 )
-from PySide6.QtCore import Qt, QThread, Signal
+from PySide6.QtCore import Qt, QThread, Signal, QTimer
 
 from app.config import (
     APP_NAME, APP_VERSION, VEHICLE_PROFILE_DEFAULT,
@@ -22,6 +22,7 @@ from dtc.advisor import DiagnosticAdvisor
 from database.db import db
 from reports.generator import ReportGenerator
 from utils.logger import tech_logger
+from updater.dialog import CheckUpdateWorker, UpdateDialog
 
 from blackbox.config import BlackboxConfig
 from blackbox.trip_manager import TripManager
@@ -112,9 +113,14 @@ class MainWindow(QMainWindow):
         self.setMinimumSize(920, 560)
         self.resize(1120, 720)
 
+        self._update_worker = None
+
         self._init_ui()
         self._refresh_ports()
         self._check_for_interrupted_trips()
+
+        # Non-blocking automatic check for updates on startup (after 3s)
+        QTimer.singleShot(3000, lambda: self._check_for_updates(manual=False))
 
     def _init_ui(self):
         central = QWidget()
@@ -173,11 +179,69 @@ class MainWindow(QMainWindow):
             background-color: #0f172a;
             border: 1px solid #1e293b;
             border-radius: 10px;
-            margin-right: 8px;
+            margin-right: 6px;
         """)
         self.status_bar.addPermanentWidget(self.lbl_developer_credit)
 
+        # Check updates button in status bar
+        self.btn_check_update = QPushButton("🔄 Atualizações")
+        self.btn_check_update.setObjectName("secondaryBtn")
+        self.btn_check_update.setToolTip("Verificar se há novas versões disponíveis no GitHub")
+        self.btn_check_update.setStyleSheet("""
+            QPushButton {
+                font-size: 11px;
+                padding: 2px 8px;
+                background-color: #0f172a;
+                border: 1px solid #1e293b;
+                border-radius: 8px;
+                color: #94a3b8;
+                font-weight: 600;
+                min-height: 18px;
+            }
+            QPushButton:hover {
+                background-color: #1e293b;
+                color: #38bdf8;
+                border: 1px solid #38bdf8;
+            }
+        """)
+        self.btn_check_update.clicked.connect(lambda: self._check_for_updates(manual=True))
+        self.status_bar.addPermanentWidget(self.btn_check_update)
+
         self.status_bar.showMessage("Pronto para conectar ao adaptador ELM327.")
+
+    def _check_for_updates(self, manual: bool = False):
+        """Checks GitHub Releases for new versions and shows UpdateDialog if available."""
+        if manual:
+            self.status_bar.showMessage("Verificando se há atualizações no GitHub...")
+
+        def _on_finished(info):
+            if manual:
+                self.status_bar.showMessage("Verificação de atualizações concluída.", 4000)
+
+            if not info:
+                if manual:
+                    QMessageBox.information(
+                        self,
+                        "Verificar Atualizações",
+                        f"Não foi possível consultar os servidores do GitHub ou nenhuma release foi publicada ainda.\n\n"
+                        f"Versão atual do aplicativo: v{APP_VERSION}."
+                    )
+                return
+
+            if info.get("has_update"):
+                dlg = UpdateDialog(info, self)
+                dlg.exec()
+            elif manual:
+                QMessageBox.information(
+                    self,
+                    "Atualizado!",
+                    f"🎉 Parabéns!\nVocê já está utilizando a versão mais recente do OBD Scanner (v{APP_VERSION})."
+                )
+
+        worker = CheckUpdateWorker(self)
+        worker.finished.connect(_on_finished)
+        self._update_worker = worker
+        worker.start()
 
     def _create_top_header(self) -> QFrame:
         frame = QFrame()

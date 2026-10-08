@@ -96,7 +96,12 @@ Geralmente, os adaptadores ELM327 USB utilizam um dos seguintes chips controlado
 * Totalmente adaptada para telas de qualquer formato: desde monitores modernos Full HD / 4K até **notebooks antigos de oficina mecânica (1366x768 ou 720p)**.
 * Sistema de rolagem suave (QScrollArea) que impede que cards, gráficos ou textos fiquem espremidos ou sobrepostos.
 
-### 7. 🧪 Modo Simulação (MOCK) para Testes sem Veículo
+### 7. 🔄 Atualização Automática Integrada (Auto-Updater)
+* O aplicativo verifica periodicamente novidades diretamente pelo **GitHub Releases** ao iniciar.
+* Botão dedicado **`🔄 Atualizações`** na barra de status superior para checagem com 1 clique a qualquer momento.
+* Exibição das notas de versão (*Release Notes* / Changelog), barra de download em tempo real e substituição automática do `.exe` sem necessidade de reinstalação manual.
+
+### 8. 🧪 Modo Simulação (MOCK) para Testes sem Veículo
 * Não precisa estar no carro para testar!
 * Basta selecionar a porta **`🧪 MODO SIMULAÇÃO (MOCK) - Teste Virtual`** para simular o comportamento da ECU do Logan, incluindo injeção de falhas, osciloscópio das sondas lambda e gravação de viagens.
 
@@ -120,6 +125,7 @@ Geralmente, os adaptadores ELM327 USB utilizam um dos seguintes chips controlado
 ## 📜 Histórico de Versões
 
 ### 🔹 v1.2.0 (Versão Atual)
+* **Sistema de Auto-Atualização Integrado (GitHub Releases):** Checagem automática ao iniciar, diálogo com notas de versão e download/reinício com um clique.
 * **Novo Osciloscópio de Sondas Lambda (O2):** Aquisição contínua em alta taxa (8-10 Hz) das tensões da Sonda 1 (PID 0114), Sonda 2 (PID 0115) e razão de equivalência $\lambda$ (PID 0124).
 * **Diagnóstico de Eficiência Catalítica (P0420):** Algoritmo automático de correlação entre Pré-Cat e Pós-Cat.
 * **Limpeza de Códigos de Falha (Mode 04 / Reset ECU):** Botão com confirmação de segurança e dupla validação com a ECU.
