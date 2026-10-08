@@ -23,9 +23,9 @@ SUPPORTED_BAUDRATES: List[int] = [
     500000
 ]
 
-APP_NAME = "OBD Scanner"
+APP_NAME = "ODBScan II"
 APP_VERSION = "1.3.0"
-VEHICLE_PROFILE_DEFAULT = "Renault Logan 2018 1.0 (3 Cilindros)"
+VEHICLE_PROFILE_DEFAULT = "Universal OBD2 / CAN Bus (SAE J1979)"
 SAFETY_WARNING = "AVISO DE SEGURANÇA: Esta ferramenta opera em modo SOMENTE LEITURA. Não apague os códigos antes de salvar o diagnóstico completo."
 
 GITHUB_REPO = "lgluiz1/Scan-ODB-II-ELM327"

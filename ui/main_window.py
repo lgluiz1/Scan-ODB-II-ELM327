@@ -23,6 +23,7 @@ from database.db import db
 from reports.generator import ReportGenerator
 from utils.logger import tech_logger
 from updater.dialog import CheckUpdateWorker, UpdateDialog
+from app.i18n import tr, get_current_language
 
 from blackbox.config import BlackboxConfig
 from blackbox.trip_manager import TripManager
@@ -109,7 +110,7 @@ class MainWindow(QMainWindow):
         self.trip_manager = TripManager()
         self.trip_monitor: Optional[TripMonitor] = None
 
-        self.setWindowTitle(f"{APP_NAME} v{APP_VERSION} — Diagnóstico Automotivo & Caixa-Preta")
+        self.setWindowTitle(f"{APP_NAME} v{APP_VERSION} — Universal Automotive Diagnostic Tool")
         self.setMinimumSize(920, 560)
         self.resize(1120, 720)
 
@@ -150,14 +151,14 @@ class MainWindow(QMainWindow):
         self.tab_terminal = TerminalView()
         self.tab_history = HistoryView()
 
-        self.tabs.addTab(self.tab_dtc, "🔍 Diagnóstico (DTC)")
-        self.tabs.addTab(self.tab_lambda, "📈 Sondas Lambda")
-        self.tabs.addTab(self.tab_blackbox, "🚗 Modo Viagem")
-        self.tabs.addTab(self.tab_trip_history, "📂 Viagens")
-        self.tabs.addTab(self.tab_events, "🚨 Eventos")
-        self.tabs.addTab(self.tab_patterns, "📊 Padrões")
-        self.tabs.addTab(self.tab_terminal, "📡 Terminal")
-        self.tabs.addTab(self.tab_history, "📜 Histórico")
+        self.tabs.addTab(self.tab_dtc, tr("tab_dtc", "🔍 Leitor de Falhas (DTC)"))
+        self.tabs.addTab(self.tab_lambda, tr("tab_lambda", "📈 Osciloscópio Lambda (O2)"))
+        self.tabs.addTab(self.tab_blackbox, tr("tab_blackbox", "🚗 Telemetria & Viagem"))
+        self.tabs.addTab(self.tab_trip_history, tr("tab_trips", "🗺️ Viagens Salvas"))
+        self.tabs.addTab(self.tab_events, tr("tab_events", "⚠️ Eventos Críticos"))
+        self.tabs.addTab(self.tab_patterns, tr("tab_patterns", "📊 Padrões Operacionais"))
+        self.tabs.addTab(self.tab_terminal, tr("tab_terminal", "💻 Terminal OBD2"))
+        self.tabs.addTab(self.tab_history, tr("tab_history", "📁 Histórico DTC"))
         main_layout.addWidget(self.tabs, stretch=1)
 
         # 4. Status Bar & Footer
@@ -170,7 +171,7 @@ class MainWindow(QMainWindow):
         self.status_bar.addPermanentWidget(self.progress_bar)
 
         # Developer & Creator credit badge in footer
-        self.lbl_developer_credit = QLabel("👨‍💻 Desenvolvido e criado por Luiz Gustavo")
+        self.lbl_developer_credit = QLabel(tr("developer_credit", "👨‍💻 Desenvolvido e criado por Luiz Gustavo"))
         self.lbl_developer_credit.setStyleSheet("""
             color: #38bdf8;
             font-weight: 700;
@@ -260,11 +261,11 @@ class MainWindow(QMainWindow):
         # App Title & Vehicle Profile
         v_title = QVBoxLayout()
         v_title.setSpacing(1)
-        lbl_app = QLabel("⚡ OBD SCANNER")
+        lbl_app = QLabel(tr("app_title", "⚡ ODBScan II"))
         lbl_app.setStyleSheet("font-size: 16px; font-weight: 800; color: #38bdf8; letter-spacing: 0.5px; background: transparent;")
         v_title.addWidget(lbl_app)
 
-        lbl_desc = QLabel(f"{VEHICLE_PROFILE_DEFAULT}")
+        lbl_desc = QLabel(tr("app_desc", "Scanner Automotivo Universal (SAE J1979 / CAN)"))
         lbl_desc.setStyleSheet("font-size: 11px; color: #94a3b8; background: transparent;")
         v_title.addWidget(lbl_desc)
         h_layout.addLayout(v_title)
@@ -272,7 +273,7 @@ class MainWindow(QMainWindow):
         h_layout.addSpacing(10)
 
         # Port Selector
-        lbl_port = QLabel("Porta:")
+        lbl_port = QLabel(tr("port", "Porta:"))
         lbl_port.setStyleSheet("font-weight: 600; color: #cbd5e1; font-size: 11px; background: transparent;")
         h_layout.addWidget(lbl_port)
 
@@ -288,7 +289,7 @@ class MainWindow(QMainWindow):
         h_layout.addWidget(self.btn_refresh_ports)
 
         # Baudrate
-        lbl_baud = QLabel("Baud:")
+        lbl_baud = QLabel(tr("baudrate", "Baud:"))
         lbl_baud.setStyleSheet("font-weight: 600; color: #cbd5e1; font-size: 11px; background: transparent;")
         h_layout.addWidget(lbl_baud)
 
@@ -300,13 +301,13 @@ class MainWindow(QMainWindow):
         h_layout.addWidget(self.combo_baud)
 
         # Connect / Disconnect Buttons
-        self.btn_connect = QPushButton("🔌 CONECTAR")
+        self.btn_connect = QPushButton(tr("connect", "🔌 CONECTAR"))
         self.btn_connect.setObjectName("successBtn")
         self.btn_connect.setStyleSheet("font-weight: 700; padding: 5px 12px; font-size: 11px;")
         self.btn_connect.clicked.connect(self._handle_connect)
         h_layout.addWidget(self.btn_connect)
 
-        self.btn_disconnect = QPushButton("⏹️ DESCONECTAR")
+        self.btn_disconnect = QPushButton(tr("disconnect", "⏹️ DESCONECTAR"))
         self.btn_disconnect.setObjectName("secondaryBtn")
         self.btn_disconnect.setEnabled(False)
         self.btn_disconnect.setStyleSheet("padding: 5px 10px; font-size: 11px;")

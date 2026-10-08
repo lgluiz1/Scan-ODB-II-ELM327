@@ -1,14 +1,21 @@
-# ⚡ OBD Scanner & Caixa-Preta (ELM327 USB)
+# ⚡ ODBScan II (ELM327 USB)
 
-[![Versão](https://img.shields.io/badge/Vers%C3%A3o-v1.2.0-blue.svg)](https://github.com/lgluiz1/Scan-ODB-II-ELM327/releases)
+[![Versão](https://img.shields.io/badge/Vers%C3%A3o-v1.3.0-blue.svg)](https://github.com/lgluiz1/Scan-ODB-II-ELM327/releases)
 [![Plataforma](https://img.shields.io/badge/Plataforma-Windows%2010%20%7C%2011%20(64--bit)-0078d7.svg)](https://github.com/lgluiz1/Scan-ODB-II-ELM327)
 [![Executável Portátil](https://img.shields.io/badge/Execut%C3%A1vel-Stand--alone%20(.exe)-success.svg)](https://github.com/lgluiz1/Scan-ODB-II-ELM327/releases/latest/download/OBDScanner.exe)
-[![Protocolo](https://img.shields.io/badge/Protocolo-OBD2%20%2F%20EOBD%20(SAE%20J1979)-orange.svg)](https://github.com/lgluiz1/Scan-ODB-II-ELM327)
+[![Página Oficial](https://img.shields.io/badge/Site%20Oficial-GitHub%20Pages-emerald.svg)](https://lgluiz1.github.io/Scan-ODB-II-ELM327/)
 [![Licença](https://img.shields.io/badge/Licen%C3%A7a-MIT-lightgrey.svg)](LICENSE)
 
-Ferramenta profissional e intuitiva de **diagnóstico eletrônico automotivo (OBD2)**, **osciloscópio de sinal das sondas lambda** e **caixa-preta de telemetria contínua (Modo Viagem)** para adaptadores **ELM327 USB** no Windows.
+Ferramenta profissional e intuitiva de **diagnóstico eletrônico automotivo universal (OBD2 / SAE J1979)**, **osciloscópio de sinal das sondas lambda** e **telemetria contínua veicular** para adaptadores **ELM327 USB** no Windows.
 
-Projetada com foco técnico nas particularidades do **Renault Logan Authentique 2018 1.0 12V 3 Cilindros (Motor B4D Flex)**, mas 100% compatível com qualquer veículo nacional ou importado que utilize o padrão OBD-II / CAN Bus.
+Compatível com qualquer veículo nacional ou importado que utilize o padrão OBD-II / CAN Bus.
+
+---
+
+## 🌐 Site Oficial & Download Direto
+
+Acesse a página oficial do projeto com design responsivo, modo claro/escuro e suporte em Português e Inglês:  
+👉 **[lgluiz1.github.io/Scan-ODB-II-ELM327](https://lgluiz1.github.io/Scan-ODB-II-ELM327/)**
 
 ---
 
@@ -17,7 +24,7 @@ Projetada com foco técnico nas particularidades do **Renault Logan Authentique 
 Você **NÃO precisa instalar Python**, bibliotecas ou ferramentas de desenvolvimento. O programa roda de forma 100% autônoma no Windows.
 
 * 🚀 **Download Direto da Última Versão:**  
-  👉 **[Baixar OBDScanner.exe (v1.2.0)](https://github.com/lgluiz1/Scan-ODB-II-ELM327/releases/latest/download/OBDScanner.exe)**
+  👉 **[Baixar ODBScan II (v1.3.0)](https://github.com/lgluiz1/Scan-ODB-II-ELM327/releases/latest/download/OBDScanner.exe)**
 * 📦 **Repositório oficial e versões anteriores:**  
   👉 [Página de Releases no GitHub](https://github.com/lgluiz1/Scan-ODB-II-ELM327/releases)
 * 💾 **No próprio repositório clonado:**  

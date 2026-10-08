@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Primary Tags -->
+  <title>ODBScan II - Scanner Automotivo Universal (ELM327 USB)</title>
+  <meta name="title" content="ODBScan II - Scanner Automotivo Universal (ELM327 USB)">
+  <meta name="description" content="Diagnóstico automotivo profissional OBD2, osciloscópio de sinal lambda e telemetria veicular para Windows. 100% autônomo e portátil, sem instalação.">
+  <meta name="keywords" content="ODBScan, ODBScan II, OBD2, ELM327, Scanner Automotivo, Sonda Lambda, Catalisador P0420, Windows, Diagnostico Carro, Portatil">
+  <meta name="author" content="Luiz Gustavo">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://lgluiz1.github.io/Scan-ODB-II-ELM327/">
+  <meta property="og:title" content="ODBScan II - Scanner Automotivo Universal">
+  <meta property="og:description" content="Utilitário de diagnóstico OBD2 universal, osciloscópio de sinal lambda e telemetria veicular para Windows.">
+  <meta property="og:image" content="https://raw.githubusercontent.com/lgluiz1/Scan-ODB-II-ELM327/main/docs/images/preview_lambda_1024.png">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://lgluiz1.github.io/Scan-ODB-II-ELM327/">
+  <meta property="twitter:title" content="ODBScan II - Scanner Automotivo Universal">
+  <meta property="twitter:description" content="Utilitário de diagnóstico OBD2 universal para adaptadores ELM327 USB no Windows.">
+  <meta property="twitter:image" content="https://raw.githubusercontent.com/lgluiz1/Scan-ODB-II-ELM327/main/docs/images/preview_lambda_1024.png">
+
+  <!-- Google AdSense Placeholder (Descomente e insira o Publisher ID da sua conta) -->
+  <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22><text y=%2226%22 font-size=%2226%22>⚡</text></svg>">
+</head>
+<body>
+
+  <!-- Ambient Glow Background -->
+  <div class="bg-glow-top"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="main-nav">
+    <div class="container nav-container">
+      <a href="#" class="brand-link" id="brand-home-link">
+        <div class="brand-icon">⚡</div>
+        <div class="brand-text">ODBScan II <span class="brand-tag" data-i18n="brand_tag">PORTÁTIL</span></div>
+      </a>
+
+      <ul class="nav-links" id="nav-menu">
+        <li><a href="#recursos" data-i18n="nav_features">Recursos</a></li>
+        <li><a href="#showcase" data-i18n="nav_showcase">Interface</a></li>
+        <li><a href="#diferenciais" data-i18n="nav_why">Diferenciais</a></li>
+        <li><a href="#drivers" data-i18n="nav_drivers">Drivers USB</a></li>
+        <li><a href="#faq" data-i18n="nav_faq">Dúvidas</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <!-- Language Switcher (PT / EN) -->
+        <button id="lang-toggle-btn" class="switch-btn" title="Alternar Idioma / Switch Language">
+          <span id="lang-current-label">🇧🇷 PT</span>
+        </button>
+
+        <!-- Theme Switcher (Light / Dark) -->
+        <button id="theme-toggle-btn" class="switch-btn" title="Alternar Tema Claro/Escuro">
+          <span id="theme-icon">☀️</span> <span id="theme-text">Light</span>
+        </button>
+
+        <!-- GitHub Repo Button -->
+        <a href="https://github.com/lgluiz1/Scan-ODB-II-ELM327" target="_blank" rel="noopener noreferrer" class="btn-nav-github" id="nav-github-link">
+          <svg height="16" width="16" viewBox="0 0 16 16" fill="currentColor">
+            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+          </svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero" id="hero-section">
+    <div class="container">
+      
+      <div class="badge-portable" id="badge-portable-container">
+        <span class="badge-dot"></span>
+        <span data-i18n="badge_portable">100% Standalone • Sem Instalação • Windows 10 & 11 (64-bit)</span>
+      </div>
+
+      <h1 class="hero-title" data-i18n="hero_title">
+        Diagnóstico Veicular Universal <br>
+        <span class="gradient-text">Direto no Seu Computador.</span>
+      </h1>
+
+      <p class="hero-subtitle" data-i18n="hero_subtitle">
+        Utilitário automotivo profissional e autônomo para adaptadores ELM327 USB. Baixe um único executável de 45 MB, 
+        dê dois cliques e comece a diagnosticar. Sem instalador, sem Python e com auto-atualização integrada.
+      </p>
+
+      <!-- Mega Download CTA -->
+      <div class="hero-cta" id="cta-container">
+        <div class="cta-buttons">
+          <a href="https://github.com/lgluiz1/Scan-ODB-II-ELM327/releases/latest/download/OBDScanner.exe" class="btn-download-mega" id="btn-download-link">
+            <span class="btn-download-icon">📥</span>
+            <div class="btn-download-texts">
+              <span class="btn-download-label" data-i18n="btn_download_label">Baixar ODBScan II</span>
+              <span class="btn-download-sub">
+                <span id="btn-version-text">(v1.3.0)</span> 
+                <span id="btn-size-text">• 44.6 MB</span>
+                <span data-i18n="btn_download_portable">• Portátil</span>
+              </span>
+            </div>
+          </a>
+
+          <a href="https://github.com/lgluiz1/Scan-ODB-II-ELM327" target="_blank" rel="noopener noreferrer" class="btn-secondary" id="btn-view-repo">
+            <svg height="20" width="20" viewBox="0 0 16 16" fill="currentColor">
+              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+            </svg>
+            <span data-i18n="btn_view_repo">Ver Código Aberto</span>
+          </a>
+        </div>
+
+        <!-- SHA256 Checksum Quick Copy -->
+        <div class="checksum-box" id="checksum-box" title="Clique para copiar o Hash SHA-256">
+          <span>SHA-256:</span>
+          <span class="checksum-val">ab38e534...6dbb</span>
+          <span class="copy-icon">📋</span>
+        </div>
+      </div>
+
+      <!-- Quick Specs -->
+      <div class="hero-specs" id="hero-specs-bar">
+        <div class="spec-item"><span>🚀</span> <span data-i18n="spec_fast">Início Instantâneo (< 2s)</span></div>
+        <div class="spec-item"><span>🔒</span> <span data-i18n="spec_offline">100% Offline e Privado</span></div>
+        <div class="spec-item"><span>💾</span> <span data-i18n="spec_pendrive">Roda Direto de Pendrive</span></div>
+        <div class="spec-item"><span>🔄</span> <span data-i18n="spec_autoupdate">Auto-Atualizador Integrado</span></div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Google AdSense Slot 1 (Header Banner) -->
+  <aside class="container" aria-label="Espaço Publicitário">
+    <div class="ad-slot-wrapper">
+      <span class="ad-label" data-i18n="ad_label">Espaço Publicitário</span>
+      <div class="ad-container" id="ad-slot-top">
+        <!-- Inserir código de anúncio do Google AdSense aqui -->
+        <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins> -->
+        <div class="ad-placeholder-text">ODBScan II • Suporte a Anúncios Google AdSense</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Interactive Showcase Window -->
+  <section class="showcase-section" id="showcase">
+    <div class="container">
+      
+      <div class="showcase-window" id="main-showcase-window">
+        <div class="window-header">
+          <div class="window-controls">
+            <span class="window-dot red"></span>
+            <span class="window-dot yellow"></span>
+            <span class="window-dot green"></span>
+          </div>
+          <div class="window-title" data-i18n="window_title">ODBScan II • Painel de Controle de Alta Fidelidade</div>
+          <div style="width: 48px;"></div>
+        </div>
+
+        <!-- Showcase Tabs -->
+        <div class="showcase-tabs" id="showcase-nav-tabs">
+          <button class="tab-btn active" data-target="img-lambda" id="tab-btn-lambda">
+            <span data-i18n="tab_lambda">📈 Osciloscópio de Sondas Lambda (O2)</span>
+          </button>
+          <button class="tab-btn" data-target="img-blackbox" id="tab-btn-blackbox">
+            <span data-i18n="tab_blackbox">🚗 Telemetria & Gravação de Viagem</span>
+          </button>
+          <button class="tab-btn" data-target="img-dtc" id="tab-btn-dtc">
+            <span data-i18n="tab_dtc">🔍 Diagnóstico de DTCs & Reset da ECU</span>
+          </button>
+        </div>
+
+        <!-- Images Viewport -->
+        <div class="showcase-viewport" id="showcase-viewport">
+          <img src="images/preview_lambda_1024.png" alt="Osciloscópio de Sondas Lambda O2 em tempo real" class="showcase-img active" id="img-lambda">
+          <img src="images/preview_blackbox_1024.png" alt="Sistema de telemetria automotiva e gravação de viagens" class="showcase-img" id="img-blackbox">
+          <img src="images/preview_dtc_1024.png" alt="Leitor de códigos de falha DTC com roteiro investigativo" class="showcase-img" id="img-dtc">
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Software Philosophy / Key Features -->
+  <section class="features-section" id="diferenciais">
+    <div class="container">
+      
+      <div class="section-head">
+        <div class="section-tag" data-i18n="tag_why">A Filosofia do Software</div>
+        <h2 class="section-title" data-i18n="title_why">Por Que Escolher o ODBScan II?</h2>
+        <p class="section-desc" data-i18n="desc_why">
+          Chega de ferramentas pesadas de 2 GB, instaladores cheios de propagandas ou dependências quebradas. 
+          O ODBScan II foi construído para ser leve, direto ao ponto e confiável em qualquer oficina ou garagem.
+        </p>
+      </div>
+
+      <div class="features-grid">
+        
+        <article class="feature-card card-emerald">
+          <div class="feature-icon-wrapper">📦</div>
+          <h3 class="feature-title" data-i18n="why_single_title">Executável Único & Autônomo</h3>
+          <p class="feature-desc" data-i18n="why_single_desc">
+            Um único arquivo de 45 MB com todas as bibliotecas necessárias embutidas. 
+            Não precisa de Python, dependências externas ou instaladores demorados.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon-wrapper">🔄</div>
+          <h3 class="feature-title" data-i18n="why_update_title">Auto-Atualização Integrada</h3>
+          <p class="feature-desc" data-i18n="why_update_desc">
+            O ODBScan II verifica o GitHub em segundo plano. Com 1 clique, ele baixa a nova versão, 
+            substitui o executável e reinicia automaticamente.
+          </p>
+        </article>
+
+        <article class="feature-card card-amber">
+          <div class="feature-icon-wrapper">💾</div>
+          <h3 class="feature-title" data-i18n="why_portable_title">Roda de Qualquer Lugar</h3>
+          <p class="feature-desc" data-i18n="why_portable_desc">
+            Salve em um pendrive e leve para a oficina. Não altera o Registro do Windows, 
+            e o banco de dados SQLite local fica perfeitamente salvo junto ao aplicativo.
+          </p>
+        </article>
+
+        <article class="feature-card card-purple">
+          <div class="feature-icon-wrapper">📱</div>
+          <h3 class="feature-title" data-i18n="why_scroll_title">Interface Adaptável com Rolagem</h3>
+          <p class="feature-desc" data-i18n="why_scroll_desc">
+            Desenvolvido pensando nos notebooks antigos de oficina (telas 1366x768 ou 720p). 
+            Nada fica espremido: sistema de rolagem suave e cards de alta visibilidade.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-icon-wrapper">🧪</div>
+          <h3 class="feature-title" data-i18n="why_mock_title">Modo Simulação (MOCK)</h3>
+          <p class="feature-desc" data-i18n="why_mock_desc">
+            Quer demonstrar ou testar o programa sem ir até o veículo? Selecione a porta virtual 
+            de testes para simular aceleração, osciloscópio e injeção de falhas.
+          </p>
+        </article>
+
+        <article class="feature-card card-emerald">
+          <div class="feature-icon-wrapper">🛡️</div>
+          <h3 class="feature-title" data-i18n="why_safe_title">100% Seguro para a ECU</h3>
+          <p class="feature-desc" data-i18n="why_safe_desc">
+            Comunicação em estrita conformidade com o padrão internacional SAE J1979. 
+            Modo somente-leitura por padrão, com confirmações duplas para limpeza de falhas.
+          </p>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Technical Capabilities -->
+  <section class="features-section" id="recursos" style="background: var(--bg-primary);">
+    <div class="container">
+      
+      <div class="section-head">
+        <div class="section-tag" data-i18n="tag_tech">Poder de Diagnóstico</div>
+        <h2 class="section-title" data-i18n="title_tech">Engenharia Automotiva na Prática</h2>
+        <p class="section-desc" data-i18n="desc_tech">
+          Compatível com qualquer veículo nacional ou importado que utilize o protocolo OBD2 / CAN Bus.
+        </p>
+      </div>
+
+      <div class="features-grid">
+        
+        <article class="feature-card">
+          <div class="feature-icon-wrapper">📈</div>
+          <h3 class="feature-title" data-i18n="tech_lambda_title">Osciloscópio de Sonda Lambda</h3>
+          <p class="feature-desc" data-i18n="tech_lambda_desc">
+            Aquisição em alta taxa (8-10 Hz) da Sonda 1 (Pré-Cat) e Sonda 2 (Pós-Cat). 
+            Avalia chaveamento pobre/rico e detecta oscilação na Sonda 2 (perda de eficiência catalítica P0420).
+          </p>
+        </article>
+
+        <article class="feature-card card-amber">
+          <div class="feature-icon-wrapper">🚗</div>
+          <h3 class="feature-title" data-i18n="tech_blackbox_title">Telemetria & Caixa-Preta (90s)</h3>
+          <p class="feature-desc" data-i18n="tech_blackbox_desc">
+            Detecta falhas intermitentes difíceis de reproduzir na oficina. Mantém um buffer 
+            circular contínuo de 60s antes da falha e congela os 30s posteriores com RPM, MAP, TPS, STFT e ECT.
+          </p>
+        </article>
+
+        <article class="feature-card card-purple">
+          <div class="feature-icon-wrapper">🔍</div>
+          <h3 class="feature-title" data-i18n="tech_dtc_title">Leitor & Reset DTCs (03, 07, 0A)</h3>
+          <p class="feature-desc" data-i18n="tech_dtc_desc">
+            Lê códigos confirmados, pendentes e permanentes com descrição técnica em português, 
+            roteiro investigativo de chicote/sensores e painel de correlação de causas raízes.
+          </p>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Google AdSense Slot 2 (Content Banner) -->
+  <aside class="container" aria-label="Espaço Publicitário">
+    <div class="ad-slot-wrapper">
+      <span class="ad-label" data-i18n="ad_label">Espaço Publicitário</span>
+      <div class="ad-container" id="ad-slot-middle">
+        <!-- Inserir segundo bloco de anúncio AdSense aqui -->
+        <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="9876543210" data-ad-format="auto" data-full-width-responsive="true"></ins> -->
+        <div class="ad-placeholder-text">ODBScan II • Bloco de Publicidade Responsivo</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- USB Drivers Section -->
+  <section class="drivers-section" id="drivers">
+    <div class="container">
+      
+      <div class="section-head">
+        <div class="section-tag" data-i18n="tag_drivers">Instalação Prévia</div>
+        <h2 class="section-title" data-i18n="title_drivers">Drivers do Cabo ELM327 USB</h2>
+        <p class="section-desc" data-i18n="desc_drivers">
+          O ODBScan II não precisa de instalação, mas o Windows precisa reconhecer o chip conversor USB-Serial 
+          do seu cabo ELM327. Baixe o driver oficial do seu chip abaixo:
+        </p>
+      </div>
+
+      <div class="drivers-grid">
+        
+        <div class="driver-card">
+          <div>
+            <div class="driver-chip-name">CH340 / CH341</div>
+            <div class="driver-usage">Mais comum nos cabos ELM327 USB azuis e transparentes.</div>
+          </div>
+          <a href="http://www.wch-ic.com/downloads/CH341SER_EXE.html" target="_blank" rel="noopener noreferrer" class="driver-btn" data-i18n="driver_download_btn">
+            Baixar Driver ↗
+          </a>
+        </div>
+
+        <div class="driver-card">
+          <div>
+            <div class="driver-chip-name">FTDI (FT232R)</div>
+            <div class="driver-usage">Cabos profissionais com chave seletora MS/HS CAN.</div>
+          </div>
+          <a href="https://ftdichip.com/drivers/vcp-drivers/" target="_blank" rel="noopener noreferrer" class="driver-btn" data-i18n="driver_download_btn">
+            Baixar Driver ↗
+          </a>
+        </div>
+
+        <div class="driver-card">
+          <div>
+            <div class="driver-chip-name">Silicon Labs CP2102</div>
+            <div class="driver-usage">Adaptadores de alta velocidade e chips industriais.</div>
+          </div>
+          <a href="https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers" target="_blank" rel="noopener noreferrer" class="driver-btn" data-i18n="driver_download_btn">
+            Baixar Driver ↗
+          </a>
+        </div>
+
+        <div class="driver-card">
+          <div>
+            <div class="driver-chip-name">Prolific PL2303</div>
+            <div class="driver-usage">Modelos clássicos USB-Serial padrão RS-232.</div>
+          </div>
+          <a href="https://www.prolific.com.tw/US/ShowProduct.aspx?p_id=225&pcid=41" target="_blank" rel="noopener noreferrer" class="driver-btn" data-i18n="driver_download_btn">
+            Baixar Driver ↗
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 3 Steps Guide -->
+  <section class="steps-section" id="como-usar">
+    <div class="container">
+      
+      <div class="section-head">
+        <div class="section-tag" data-i18n="tag_steps">Prático & Direto</div>
+        <h2 class="section-title" data-i18n="title_steps">Como Usar no Carro em 3 Passos</h2>
+      </div>
+
+      <div class="steps-grid">
+        
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h3 class="step-title" data-i18n="step1_title">Conecte o Adaptador</h3>
+          <p class="step-desc" data-i18n="step1_desc">
+            Plugue o cabo ELM327 na tomada OBD-II do seu veículo e a ponta USB no notebook.
+          </p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h3 class="step-title" data-i18n="step2_title">Ligue a Ignição</h3>
+          <p class="step-desc" data-i18n="step2_desc">
+            Gire a chave do carro para a posição de ignição (painel totalmente aceso). Não precisa dar a partida no motor.
+          </p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h3 class="step-title" data-i18n="step3_title">Abra o ODBScan II</h3>
+          <p class="step-desc" data-i18n="step3_desc">
+            Abra o aplicativo, selecione a porta serial identificada (ex: COM3) com velocidade 38400 bps e clique em Conectar!
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq-section" id="faq">
+    <div class="container">
+      
+      <div class="section-head">
+        <div class="section-tag" data-i18n="tag_faq">Perguntas Frequentes</div>
+        <h2 class="section-title" data-i18n="title_faq">Tire Suas Dúvidas</h2>
+      </div>
+
+      <div class="faq-list">
+        
+        <div class="faq-item">
+          <button class="faq-question">
+            <span data-i18n="faq1_q">Preciso instalar Python ou alguma biblioteca para rodar?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer" data-i18n="faq1_a">
+            <strong>Não!</strong> O aplicativo é 100% autônomo. O arquivo executável já contém o interpretador e todas as dependências embutidas, pronto para uso em qualquer computador com Windows 10 ou 11.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span data-i18n="faq2_q">Funciona em quais veículos?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer" data-i18n="faq2_a">
+            Funciona em <strong>qualquer carro nacional ou importado</strong> compatível com o padrão OBD-II (no Brasil, veículos fabricados a partir de 2010; nos EUA/Europa, a partir de 1996/2001).
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span data-i18n="faq3_q">O aplicativo precisa de conexão com a Internet para funcionar?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer" data-i18n="faq3_a">
+            <strong>Não.</strong> Todas as funções de diagnóstico, osciloscópio e telemetria rodam 100% offline. A internet é usada exclusivamente caso você queira verificar novas atualizações pelo GitHub.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span data-i18n="faq4_q">Como faço para atualizar o programa quando sair uma versão nova?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer" data-i18n="faq4_a">
+            Basta abrir o aplicativo! Ele avisa automaticamente caso haja novidades. Você também pode clicar no botão <strong>'🔄 Atualizações'</strong> na barra superior do programa para baixar e reiniciar com apenas 1 clique.
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      
+      <div class="footer-grid">
+        
+        <div class="footer-brand">
+          <div class="brand-link">
+            <div class="brand-icon">⚡</div>
+            <div class="brand-text">ODBScan II</div>
+          </div>
+          <p class="footer-desc" data-i18n="footer_desc">
+            Utilitário automotivo universal para diagnóstico OBD-II, análise de osciloscópio de sinal lambda e telemetria veicular para adaptadores ELM327 USB.
+          </p>
+          <div class="footer-dev-badge" data-i18n="footer_dev">
+            👨‍💻 Desenvolvido e criado por Luiz Gustavo
+          </div>
+        </div>
+
+        <div class="footer-links-group">
+          
+          <div class="footer-col">
+            <h4 data-i18n="footer_downloads">Downloads</h4>
+            <ul>
+              <li><a href="https://github.com/lgluiz1/Scan-ODB-II-ELM327/releases/latest/download/OBDScanner.exe">ODBScan II (v1.3.0)</a></li>
+              <li><a href="https://github.com/lgluiz1/Scan-ODB-II-ELM327/releases" data-i18n="footer_history">Histórico de Releases</a></li>
+              <li><a href="http://www.wch-ic.com/downloads/CH341SER_EXE.html" target="_blank" rel="noopener noreferrer">Driver CH340 USB</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4 data-i18n="footer_source">Código Aberto</h4>
+            <ul>
+              <li><a href="https://github.com/lgluiz1/Scan-ODB-II-ELM327" target="_blank" rel="noopener noreferrer" data-i18n="footer_repo">Repositório GitHub</a></li>
+              <li><a href="https://github.com/lgluiz1/Scan-ODB-II-ELM327/issues" target="_blank" rel="noopener noreferrer" data-i18n="footer_issues">Relatar Falha (Issues)</a></li>
+              <li><a href="https://github.com/lgluiz1/Scan-ODB-II-ELM327/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" data-i18n="footer_license">Licença MIT</a></li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <div data-i18n="footer_copy">
+          © 2026 ODBScan II. Software de código aberto sob licença MIT.
+        </div>
+        <div data-i18n="footer_tagline">
+          Desenvolvido com foco em transparência técnica automotiva.
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
