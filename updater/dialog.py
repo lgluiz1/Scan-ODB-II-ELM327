@@ -10,7 +10,7 @@ from PySide6.QtWidgets import (
     QDialog, QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton,
     QProgressBar, QTextBrowser, QFrame, QMessageBox, QApplication
 )
-from PySide6.QtCore import Qt, QThread, Signal
+from PySide6.QtCore import Qt, QThread, Signal, QTimer
 
 from app.config import APP_VERSION, APP_NAME
 from updater.checker import check_for_updates, download_file, apply_update_and_restart
@@ -249,11 +249,17 @@ class UpdateDialog(QDialog):
         self.lbl_progress_status.setText("Download concluído! Aplicando nova versão e reiniciando...")
         self.progress_bar.setValue(100)
 
+        # Wait cleanly for the download thread to finish
+        if self.download_worker:
+            self.download_worker.wait(2000)
+
         # Apply update
         ok, msg = apply_update_and_restart(path_or_error)
         if ok:
             tech_logger.info("[UPDATER] Atualização aplicada. Encerrando aplicação para reinício...")
-            QApplication.quit()
+            self.accept()
+            # Force immediate OS exit so Windows unlocks the executable file
+            QTimer.singleShot(250, lambda: os._exit(0))
         else:
             QMessageBox.warning(self, "Aviso", msg)
             self.btn_update.setEnabled(True)

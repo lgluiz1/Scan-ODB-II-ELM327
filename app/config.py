@@ -24,7 +24,7 @@ SUPPORTED_BAUDRATES: List[int] = [
 ]
 
 APP_NAME = "OBD Scanner"
-APP_VERSION = "1.2.0"
+APP_VERSION = "1.3.0"
 VEHICLE_PROFILE_DEFAULT = "Renault Logan 2018 1.0 (3 Cilindros)"
 SAFETY_WARNING = "AVISO DE SEGURANÇA: Esta ferramenta opera em modo SOMENTE LEITURA. Não apague os códigos antes de salvar o diagnóstico completo."
 

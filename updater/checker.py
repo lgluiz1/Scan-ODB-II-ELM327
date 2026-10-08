@@ -142,34 +142,62 @@ def apply_update_and_restart(new_binary_path: str) -> Tuple[bool, str]:
     if not is_frozen:
         return False, "O aplicativo está rodando a partir do código-fonte Python. Para atualizar, faça 'git pull' ou baixe o novo .exe."
 
-    current_exe = sys.executable
+    current_exe = os.path.abspath(sys.executable)
     if not os.path.exists(current_exe):
         return False, f"Executável de destino não localizado: {current_exe}"
+
+    dest_dir = os.path.dirname(current_exe)
+    current_pid = os.getpid()
 
     temp_dir = tempfile.gettempdir()
     bat_path = os.path.join(temp_dir, "obdscanner_updater.bat")
 
-    # Batch script waits for current PID to terminate, overwrites exe, relaunches and self-destructs
+    # Batch script waits for PID, forces cleanup if stuck, replaces binary, sets cwd and relaunches
     bat_content = f"""@echo off
 setlocal
-echo Aguardando fechamento do OBD Scanner...
-timeout /t 1 /nobreak > nul
 
-for /l %%i in (1, 1, 15) do (
-    copy /y "{new_binary_path}" "{current_exe}" > nul 2>&1
-    if not errorlevel 1 goto launch
-    timeout /t 1 /nobreak > nul
+set "TARGET_PID={current_pid}"
+set "NEW_EXE={new_binary_path}"
+set "DEST_EXE={current_exe}"
+set "DEST_DIR={dest_dir}"
+
+echo [UPDATER] Aguardando fechamento do OBD Scanner (PID %TARGET_PID%)...
+
+:: 1. Aguarda o processo anterior encerrar (ate 5 tentativas de 1s)
+for /l %%i in (1, 1, 5) do (
+    tasklist /fi "PID eq %TARGET_PID%" 2>nul | findstr /i "%TARGET_PID%" >nul
+    if errorlevel 1 goto do_copy
+    timeout /t 1 /nobreak >nul
 )
 
-:launch
-del /f /q "{new_binary_path}" > nul 2>&1
-start "" "{current_exe}"
-del /f /q "%~f0" > nul 2>&1
+:: 2. Se ainda estiver aberto, forca encerramento para liberar o arquivo no Windows
+taskkill /F /PID %TARGET_PID% >nul 2>&1
+timeout /t 1 /nobreak >nul
+
+:do_copy
+echo [UPDATER] Copiando nova versao...
+for /l %%i in (1, 1, 10) do (
+    copy /y "%NEW_EXE%" "%DEST_EXE%" >nul 2>&1
+    if not errorlevel 1 goto do_launch
+    timeout /t 1 /nobreak >nul
+)
+
+echo [ERRO] Nao foi possivel sobrescrever o executavel.
+goto do_cleanup
+
+:do_launch
+echo [UPDATER] Iniciando nova versao atualizada...
+del /f /q "%NEW_EXE%" >nul 2>&1
+cd /d "%DEST_DIR%"
+start "" "%DEST_EXE%"
+
+:do_cleanup
+del /f /q "%~f0" >nul 2>&1
 exit
 """
 
     try:
-        with open(bat_path, "w", encoding="utf-8") as f:
+        with open(bat_path, "w", encoding="ascii", errors="replace") as f:
             f.write(bat_content)
 
         tech_logger.info(f"[UPDATER] Lançando script de substituição: {bat_path}")
